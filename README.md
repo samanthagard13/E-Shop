@@ -6,6 +6,8 @@
 
   Developed back end connection for online store.
 
+  [Link to walkthrough insomnia test video](https://drive.google.com/file/d/1p-pt0E-8Q93GaowoePQEGMotuTw0gNzj/view)
+
   ![screenshot of insomnia test](./Assets/Screenshot.png)
 
   ## License
