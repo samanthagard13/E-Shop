@@ -43,14 +43,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new tag
   try {
-    const newTag = await Tag.create({
-      include: [
-        {
-          model: Tag,
-          attributes: ['id', 'tag_name'],
-        },
-      ],
-    });
+    const newTag = await Tag.create(req.body);
     res.json(newTag);
   } catch (error) {
     console.error('Error creating new tag: ', error);
@@ -62,8 +55,10 @@ router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
   try {
     const tagId = req.params.id;
-    const updateTag = await Tag.update(tagId, {
-
+    const updateTag = await Tag.update(req.body, {
+      where: {
+        id: tagId, 
+        },
     });
 
     res.json(updateTag);
@@ -80,7 +75,7 @@ router.delete('/:id', async (req, res) => {
       where: { id: tagId },
     });
 
-    res.json({message: 'Tag deleted.'}, deleteId);
+    res.status(200).json(deleteId);
   } catch (error) {
     console.error('Error deleting tag: ', error);
   }
